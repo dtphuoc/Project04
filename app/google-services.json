@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "880200643905",
+    "firebase_url": "https://shopdemo-8c277-default-rtdb.firebaseio.com",
+    "project_id": "shopdemo-8c277",
+    "storage_bucket": "shopdemo-8c277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880200643905:android:02b204cb8a488f4d3f9dc0",
+        "android_client_info": {
+          "package_name": "com.example.layout_login_signup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880200643905-htvp9ufdugrr2aggehvi0ietepd3841r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJQl_qvr0wJnyLqlBzBE5E_p6rTDECG5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880200643905-htvp9ufdugrr2aggehvi0ietepd3841r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880200643905:android:292c6f7d90080a083f9dc0",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880200643905-htvp9ufdugrr2aggehvi0ietepd3841r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJQl_qvr0wJnyLqlBzBE5E_p6rTDECG5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880200643905-htvp9ufdugrr2aggehvi0ietepd3841r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880200643905:android:5bee3d61c45e224a3f9dc0",
+        "android_client_info": {
+          "package_name": "com.example.onlytest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880200643905-htvp9ufdugrr2aggehvi0ietepd3841r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJQl_qvr0wJnyLqlBzBE5E_p6rTDECG5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880200643905-htvp9ufdugrr2aggehvi0ietepd3841r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
