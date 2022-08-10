@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class SignUpActivity extends AppCompatActivity {
 
     EditText fullname;
@@ -47,12 +49,16 @@ public class SignUpActivity extends AppCompatActivity {
     DatabaseReference table_users = FirebaseDatabase.getInstance().getReference("Users");
 
     DataSnapshot dataSnapshot;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         fullname = findViewById(R.id.fullname);
         email = findViewById(R.id.email);
         phone = findViewById(R.id.phone);
@@ -63,6 +69,11 @@ public class SignUpActivity extends AppCompatActivity {
         loginNowBtn = findViewById(R.id.sign_in_button);
         forgetBtn = findViewById(R.id.btn_reset_password);
 
+        this.fullname.setText("dshdsuhd");
+        this.email.setText("dddd@gmail.com");
+        this.phone.setText("1231231231");
+        this.password.setText("dshdsuhd");
+        this.conPassword.setText("dshdsuhd");
 
         auth = FirebaseAuth.getInstance();
 
@@ -85,6 +96,8 @@ public class SignUpActivity extends AppCompatActivity {
         String phone = this.phone.getText().toString();
         String pass = password.getText().toString();
         String conPass = this.conPassword.getText().toString();
+
+
         String role = "buyer";
         String site_id = "0";
         if (fullname.isEmpty()) {
@@ -124,22 +137,43 @@ public class SignUpActivity extends AppCompatActivity {
             this.conPassword.requestFocus();
 
         } else {
-            auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-
+            databaseReference.child("Users").addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(SignUpActivity.this, "User Registered Successfully ", Toast.LENGTH_SHORT).show();
-                        //insert to db
-                        User userObject = new User(email, phone, fullname, role ,site_id);
-                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                        databaseReference.child("Users").child(firebaseUser.getUid()).setValue(userObject);
-                        startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    boolean isDublicatePhone = false;
+                    for (DataSnapshot singleSnapshot : snapshot.getChildren()){
+                        if(((HashMap)singleSnapshot.getValue()).get("phone").equals(phone) == true) {
+                            isDublicatePhone = true;
+                        }
+                    }
+                    if(!isDublicatePhone) {
+                        auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(SignUpActivity.this, "User Registered Successfully ", Toast.LENGTH_SHORT).show();
+                                    //insert to db
+                                    User userObject = new User(email, phone, fullname, role ,site_id);
+                                    databaseReference.child("Users").child(firebaseUser.getUid()).setValue(userObject);
+                                    startActivity(new Intent(SignUpActivity.this, LoginActivity.class));
+                                } else {
+                                    Toast.makeText(SignUpActivity.this, "Registered Error :" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
                     } else {
-                        Toast.makeText(SignUpActivity.this, "Registered Error :" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignUpActivity.this, "Your phone is already exist", Toast.LENGTH_LONG).show();
                     }
                 }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
             });
+
+
         }
 
     }

@@ -45,7 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
-
+        email.setText("thinhphuoc291104@gmail.com");
+        password.setText("123456");
         forgetBtn = findViewById(R.id.btn_reset_password);
         registerNowBtn = findViewById(R.id.btn_signup);
         loginBtn = findViewById(R.id.btn_login);
@@ -66,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
-        String email = this.email.getText().toString();
+        String email = this.email.getText().toString().trim();
         String pass = this.password.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
